@@ -1,0 +1,35 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+{% load otreechat %}
+
+{% block title %}
+    Chat
+{% endblock %}
+
+{% block scripts %}
+    <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
+{% endblock %}
+
+{% block content %}
+
+    <p>
+        {% chat nickname=player.role %}
+    </p>
+
+    <p>
+        If you are ready, click "Next" to proceed
+    </p>
+
+    {% next_button %}
+
+    {% if player.role == 'A' %}
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('.otree-chat').find('input').remove()
+                $('.otree-chat').find('button').remove()
+                $('.otree-chat').append('<p>You cannot talk back as {{ player.role }}</p>')
+            })
+        </script>
+    {% endif %}
+
+{% endblock %}

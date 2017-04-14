@@ -13,6 +13,20 @@ class Decision(Page):
     form_fields = ['decision']
 
 
+class BeforeChatWaitPage(WaitPage):
+    def after_all_players_arrive(self):
+        pass
+
+
+class Chat(Page):
+    pass
+
+
+class ChatWaitPage(WaitPage):
+    def after_all_players_arrive(self):
+        pass
+
+
 class ResultsWaitPage(WaitPage):
     def after_all_players_arrive(self):
         for p in self.group.get_players():
@@ -30,6 +44,9 @@ class Results(Page):
 
 page_sequence = [
     Introduction,
+    BeforeChatWaitPage,
+    Chat,
+    ChatWaitPage,
     Decision,
     ResultsWaitPage,
     Results
